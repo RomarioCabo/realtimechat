@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+
+  local-chat-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: "chat_db"
+      POSTGRES_USER: "chat_user"
+      POSTGRES_PASSWORD: "chat_password"
+    ports:
+      - "5442:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data2
+    container_name: local-chat-db
+    networks:
+      - chat-shared-net
+
+volumes:
+  postgres-data:
+    external: false
+
+networks:
+  chat-shared-net:
+    name: chat-shared-net

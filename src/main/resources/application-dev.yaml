@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5442/chat_db
+      username: chat_user
+      password: chat_password
+      connection-test-query: SELECT 1
