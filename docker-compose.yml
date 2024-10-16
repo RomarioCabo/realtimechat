@@ -5,7 +5,7 @@ services:
   local-chat-db:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: "chat_db"
+      POSTGRES_DB: "local-chat-db"
       POSTGRES_USER: "chat_user"
       POSTGRES_PASSWORD: "chat_password"
     ports:
