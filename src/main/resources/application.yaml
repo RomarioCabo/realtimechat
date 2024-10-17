@@ -24,7 +24,7 @@ springdoc:
     path: "/swagger-ui.html"
     enabled: true
     operations-sorter: "method"
-  packagesToScan: br.com.corretora.application.controller
+  packagesToScan: com.br.realtimechat.controller
 
 server:
   tomcat:

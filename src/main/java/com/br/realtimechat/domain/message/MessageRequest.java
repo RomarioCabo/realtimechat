@@ -1,6 +1,8 @@
-package com.br.realtimechat.domain.chat;
+package com.br.realtimechat.domain.message;
 
 import lombok.*;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -9,5 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 public class MessageRequest {
     private String content;
-    private String sender;
+    private UUID idSender;
+    private UUID idRecipient;
 }

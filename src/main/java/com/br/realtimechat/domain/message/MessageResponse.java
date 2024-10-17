@@ -1,5 +1,6 @@
-package com.br.realtimechat.domain.chat;
+package com.br.realtimechat.domain.message;
 
+import com.br.realtimechat.domain.user.UserResponse;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.util.UUID;
 public class MessageResponse {
     private UUID id;
     private String content;
-    private String sender;
+    private UserResponse sender;
+    private UserResponse recipient;
     private LocalDateTime createdAt;
 }
