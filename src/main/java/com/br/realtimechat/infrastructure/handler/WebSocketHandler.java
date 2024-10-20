@@ -34,7 +34,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        String username = Objects.requireNonNull(session.getUri()).getQuery().split("=")[1];  // username=(88)99980-0999
+        String username = Objects.requireNonNull(session.getUri()).getQuery().split("=")[1];
         sessions.put(username, session);
         log.info("[afterConnectionEstablished] User {} connected with session id {}", username, session.getId());
     }
@@ -45,7 +45,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         MessageRequest messageRequest = objectMapper.readValue(message.getPayload(), MessageRequest.class);
 
-        String targetUser = messageRequest.getIdRecipient().toString();  // Recipient para quem a mensagem será enviada
+        String targetUser = messageRequest.getIdRecipient().toString();
         String messageContent = messageRequest.getContent();
 
         WebSocketSession targetSession = sessions.get(targetUser);

@@ -13,6 +13,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -41,11 +43,29 @@ public class DatabaseProviderImpl implements DatabaseProvider {
 
     @Override
     @Transactional
-    public MessageResponse saveMessage(final MessageRequest messageRequest, final UUID idMessageChat) {
+    public void saveMessage(final MessageRequest messageRequest, final UUID idMessageChat) {
         final UserEntity sender = userRepository.findUserById(messageRequest.getIdSender());
         final UserEntity recipient = userRepository.findUserById(messageRequest.getIdRecipient());
 
         final MessageEntity messageEntity = new MessageEntity(idMessageChat, messageRequest, sender, recipient);
-        return messageRepository.save(messageEntity).toModel();
+        messageRepository.save(messageEntity).toModel();
+    }
+
+    @Override
+    public List<MessageResponse> getAllMessagesSentByMeToSpecificRecipient(final UUID idSender, final UUID idRecipient) {
+        return Optional.ofNullable(messageRepository.getAllMessagesSentByMeToSpecificRecipient(idSender, idRecipient))
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(MessageEntity::toModel)
+                .toList();
+    }
+
+    @Override
+    public List<MessageResponse> getAllMessagesSendToMeToSpecificRecipient(final UUID idRecipient, final UUID idSender) {
+        return Optional.ofNullable(messageRepository.getAllMessagesSendToMeToSpecificRecipient(idRecipient, idSender))
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(MessageEntity::toModel)
+                .toList();
     }
 }

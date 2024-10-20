@@ -50,7 +50,7 @@ public class MessageEntity {
                 .id(this.id)
                 .content(this.content)
                 .sender(this.sender.toModel())
-                .sender(this.recipient.toModel())
+                .recipient(this.recipient.toModel())
                 .createdAt(this.createdAt)
                 .build();
     }
