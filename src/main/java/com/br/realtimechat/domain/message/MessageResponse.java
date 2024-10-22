@@ -19,4 +19,5 @@ public class MessageResponse {
     private UserResponse sender;
     private UserResponse recipient;
     private LocalDateTime createdAt;
+    private String timeSent;
 }

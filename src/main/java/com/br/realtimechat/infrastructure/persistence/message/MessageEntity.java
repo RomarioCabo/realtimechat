@@ -9,6 +9,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static com.br.realtimechat.infrastructure.formatter.Formatter.localDateTimeToString;
+
 @Getter
 @Setter
 @Entity
@@ -34,7 +36,7 @@ public class MessageEntity {
     private UserEntity recipient;
 
     @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     public MessageEntity(final UUID idMessageChat, final MessageRequest messageRequest, final UserEntity sender,
                          final UserEntity recipient) {
@@ -52,6 +54,7 @@ public class MessageEntity {
                 .sender(this.sender.toModel())
                 .recipient(this.recipient.toModel())
                 .createdAt(this.createdAt)
+                .timeSent(localDateTimeToString(this.createdAt, "HH:mm"))
                 .build();
     }
 }
