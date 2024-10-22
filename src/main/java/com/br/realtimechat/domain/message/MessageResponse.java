@@ -10,6 +10,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class MessageResponse {
